@@ -51,7 +51,7 @@ export const LoginSignup = () => {
       confirmPassword.trim() !== "" &&
       password === confirmPassword
     ) {
-      navigate("/dash")
+      navigate("/setup")
     }
   }
 
