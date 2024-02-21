@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "sdmay24caterpillar",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsdmay24caterpillar",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

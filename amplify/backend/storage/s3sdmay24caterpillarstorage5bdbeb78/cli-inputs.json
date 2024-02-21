@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3sdmay24caterpillarstorage5bdbeb78",
+  "bucketName": "sdmay24-caterpillar-storage-5bdbeb78",
+  "policyUUID": "4a5b82a9",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

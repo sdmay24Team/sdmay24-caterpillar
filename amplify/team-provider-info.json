@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "sdmay24caterpillar": {}
+      },
+      "storage": {
+        "s3sdmay24caterpillarstorage5bdbeb78": {}
+      },
+      "api": {
+        "sdmay24caterpillar": {}
       }
     }
   }

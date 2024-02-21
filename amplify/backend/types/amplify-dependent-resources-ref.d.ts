@@ -1,4 +1,11 @@
 export type AmplifyDependentResourcesAttributes = {
+  "api": {
+    "sdmay24caterpillar": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string",
+      "GraphQLAPIKeyOutput": "string"
+    }
+  },
   "auth": {
     "sdmay24caterpillar": {
       "AppClientID": "string",
@@ -9,6 +16,12 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
+    }
+  },
+  "storage": {
+    "s3sdmay24caterpillarstorage5bdbeb78": {
+      "BucketName": "string",
+      "Region": "string"
     }
   }
 }
