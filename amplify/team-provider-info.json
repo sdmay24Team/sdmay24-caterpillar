@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify82a28cfc57624-staging-11135-authRole",
+      "UnauthRoleArn": "arn:aws:iam::767398098648:role/amplify-amplify82a28cfc57624-staging-11135-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::767398098648:role/amplify-amplify82a28cfc57624-staging-11135-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify82a28cfc57624-staging-11135-deployment",
+      "UnauthRoleName": "amplify-amplify82a28cfc57624-staging-11135-unauthRole",
+      "StackName": "amplify-amplify82a28cfc57624-staging-11135",
+      "StackId": "arn:aws:cloudformation:us-east-2:767398098648:stack/amplify-amplify82a28cfc57624-staging-11135/28742810-d056-11ee-880f-02662f4cb827",
+      "AmplifyAppId": "dbu0rfc0g49j2"
+    },
+    "categories": {
+      "auth": {
+        "sdmay24caterpillar": {}
+      }
+    }
+  }
+}
