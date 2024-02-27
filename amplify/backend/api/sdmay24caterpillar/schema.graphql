@@ -2,7 +2,132 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 # input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
+type ReleaseSiteJSON {
+  Country: String!
+  State: String!
+  Address: String!
+  Notes: String
+}
+
+type PupaeCheck @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  DatePupated: AWSDateTime!
+  Caterpillar: Caterpillar! @hasOne
+  ReleaseDate: AWSDateTime
+  ReleaseSite: ReleaseSiteJSON
+  Emerged: Boolean!
+  Weather: WeatherJSON
+  BucketID: ID! @index(name: "byBucket")
+  Bucket: Bucket! @belongsTo(fields: ["BucketID"])
+}
+
+type PostDiapauseCheck @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  CaterpillarID: ID! @index(name: "byCaterpillar")
+  Weather: WeatherJSON
+  Date: AWSDateTime!
+  InitialLarvae: Int!
+  NumLarvae: Int!
+  Food: Boolean!
+  Enclosure: Boolean!
+  Water: Boolean!
+  Js: Int
+  NumberPupae: String!
+  Notes: String
+  JarID: ID! @index(name: "byJar")
+  CaretakerID: ID! @index(name: "byCaretaker")
+  Jar: Jar! @belongsTo(fields: ["JarID"])
+  Caretaker: Caretaker! @belongsTo(fields: ["CaretakerID"])
+  Caterpillar: Caterpillar! @belongsTo(fields: ["CaterpillarID"])
+}
+
+type DiapauseCheck @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  Date: AWSDateTime!
+  NumLarvae: Int!
+  Notes: String
+  Weather: WeatherJSON
+  CaterpillarID: ID! @index(name: "byCaterpillar")
+  JarID: ID! @index(name: "byJar")
+  CaretakerID: ID! @index(name: "byCaretaker")
+  Caterpillar: Caterpillar! @belongsTo(fields: ["CaterpillarID"])
+  Jar: Jar! @belongsTo(fields: ["JarID"])
+  Caretaker: Caretaker! @belongsTo(fields: ["CaretakerID"])
+}
+
+type WeatherJSON {
+  Humidity: Int!
+  Temperature: Int!
+}
+
+type MomCheck @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  Date: AWSDateTime
+  Dev: Boolean!
+  TimeDrinking: Int!
+  TimeEating: Int!
+  CottonBall: Boolean!
+  NumLeaves: Int!
+  Notes: String
+  Weather: WeatherJSON
+  MomID: ID! @index(name: "byMom")
+  DishID: ID! @index(name: "byDish")
+  Mom: Mom! @belongsTo(fields: ["MomID"])
+  Dish: Dish! @belongsTo(fields: ["DishID"])
+  Caretaker: Caretaker! @belongsTo(fields: ["CaretakerID"])
+  CaretakerID: ID! @index(name: "byCaretaker")
+}
+
+type Mom @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  NumEggs: Int!
+  DateFirstHatch: AWSDateTime
+  TotalHatched: Int
+  MomChecks: [MomCheck] @hasMany(indexName: "byMom", fields: ["id"])
+  Caterpillars: [Caterpillar] @hasMany(indexName: "byMom", fields: ["id"])
+}
+
+type Media @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  CaterpillarID: ID!
+  BlobID: ID
+}
+
+type Bucket @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  Notes: String
+  PupaeChecks: [PupaeCheck] @hasMany(indexName: "byBucket", fields: ["id"])
+}
+
+type Dish @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  Notes: String
+  MomChecks: [MomCheck] @hasMany(indexName: "byDish", fields: ["id"])
+}
+
+type Jar @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  Notes: String
+  DiapauseChecks: [DiapauseCheck] @hasMany(indexName: "byJar", fields: ["id"])
+  PostDiapauseChecks: [PostDiapauseCheck] @hasMany(indexName: "byJar", fields: ["id"])
+}
+
+type Caretaker @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  Name: String!
+  Email: AWSEmail!
+  Initials: String!
+  DiapauseChecks: [DiapauseCheck] @hasMany(indexName: "byCaretaker", fields: ["id"])
+  PostDiapauseChecks: [PostDiapauseCheck] @hasMany(indexName: "byCaretaker", fields: ["id"])
+  MomChecks: [MomCheck] @hasMany(indexName: "byCaretaker", fields: ["id"])
+}
+
 type Caterpillar @model @auth(rules: [{allow: private}]) {
-    IDCaterpillar: ID!
-    Notes: String!
+  id: ID!
+  Notes: String
+  momID: ID! @index(name: "byMom")
+  State: Int!
+  DiapauseChecks: [DiapauseCheck] @hasMany(indexName: "byCaterpillar", fields: ["id"])
+  PostDiapauseChecks: [PostDiapauseCheck] @hasMany(indexName: "byCaterpillar", fields: ["id"])
+  Mom: Mom! @belongsTo(fields: ["momID"])
 }
