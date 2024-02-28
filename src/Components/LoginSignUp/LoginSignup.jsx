@@ -5,6 +5,12 @@ import email_icon from "../Assets/email.png"
 import password_icon from "../Assets/password.png"
 import logo_icon from "../Assets/butterfly-logo.png"
 import { useNavigate } from "react-router-dom"
+import {
+  signIn,
+  signUp,
+  signOut,
+  currentAuthenticatedUser,
+} from "aws-amplify/auth"
 
 export const LoginSignup = () => {
   // Login Variables
@@ -34,14 +40,52 @@ export const LoginSignup = () => {
     setPassword(event.target.value)
   }
 
-  const handleClickLogin = (event) => {
+  const handleClickLogin = async (event) => {
     setAction("Login")
+
     if (username.trim() !== "" && password.trim() !== "") {
-      navigate("/dash")
+      try {
+        const result = await signInUser(username, password)
+
+        switch (result) {
+          case "CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED":
+            console.log("Confirm sign in with new password required", result)
+            break
+          case "CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE":
+            console.log("Confirm sign in with custom challenge", result)
+            break
+          case "CONFIRM_SIGN_IN_WITH_TOTP_CODE":
+            console.log("Confirm sign in with TOTP code", result)
+            break
+          case "CONTINUE_SIGN_IN_WITH_TOTP_SETUP":
+            console.log("Continue sign in with TOTP setup", result)
+            break
+          case "CONFIRM_SIGN_IN_WITH_SMS_CODE":
+            console.log("Confirm sign in with SMS code", result)
+            break
+          case "CONTINUE_SIGN_IN_WITH_MFA_SELECTION":
+            console.log("Continue sign in with MFA selection", result)
+            break
+          case "RESET_PASSWORD":
+            console.log("Reset password", result)
+            break
+          case "CONFIRM_SIGN_UP":
+            console.log("Confirm sign up", result)
+            break
+          case "DONE":
+            console.log("Done", result)
+            navigate("/dash")
+            break
+          default:
+            console.log("CANNOT SIGN IN", result)
+        }
+      } catch (error) {
+        console.log("ERROR SIGNING IN", error)
+      }
     }
   }
 
-  const handleClickCreateAccount = (event) => {
+  const handleClickCreateAccount = async (event) => {
     setAction("Create Account")
 
     if (
@@ -51,7 +95,27 @@ export const LoginSignup = () => {
       confirmPassword.trim() !== "" &&
       password === confirmPassword
     ) {
-      navigate("/setup")
+      const signUpResult = await signUpUser(username, password, organization)
+
+      switch (signUpResult) {
+        case "CONFIRM_SIGN_UP":
+          console.log("CONFIRM_SIGN_UP")
+          navigate("/setup")
+          break
+        case "DONE":
+          console.log("DONE")
+          break
+        case "COMPLETE_AUTO_SIGN_IN":
+          console.log("COMPLETE_AUTO_SIGN_IN")
+          break
+        default:
+          console.log("Default case")
+          break
+
+        //navigate("/setup")
+      }
+    } else {
+      console.log("Error: Passwords do not match")
     }
   }
 
@@ -136,6 +200,50 @@ export const LoginSignup = () => {
       </div>
     </div>
   )
+}
+
+async function signInUser(username, password) {
+  try {
+    const user = await signIn({ username, password })
+    return user.nextStep.signInStep
+  } catch (error) {
+    console.log("ERROR ON SIGN IN", error)
+    if (error.name == "UserAlreadyAuthenticatedException") {
+      console.log("USER SIGNED IN ALREADY")
+      await forceSignOut()
+    }
+  }
+}
+
+async function signUpUser(username, password, organization) {
+  try {
+    const user = await signUp({
+      username,
+      password,
+      options: {
+        userAttributes: {
+          email: username,
+          phone_number: "+1234567890",
+          name: "John Doe",
+          //"custom:organization": organization,
+        },
+      },
+    })
+    console.log("user", user)
+    return user.nextStep.signUpStep
+  } catch (error) {
+    console.log("error signing up", error)
+  }
+}
+
+async function forceSignOut() {
+  try {
+    //const user = await currentAuthenticatedUser()
+    const result = await signOut()
+    console.log("result", result)
+  } catch (error) {
+    console.log("error forcing sign out", error)
+  }
 }
 
 export default LoginSignup
