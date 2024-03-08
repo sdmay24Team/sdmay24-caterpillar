@@ -6,7 +6,7 @@ import { Amplify } from "aws-amplify"
 import config from "./aws-exports"
 import reportWebVitals from "./reportWebVitals"
 import { BrowserRouter } from "react-router-dom"
-
+import '@aws-amplify/ui-react/styles.css';
 Amplify.configure(config)
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
