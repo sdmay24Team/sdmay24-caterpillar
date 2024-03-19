@@ -126,5 +126,6 @@ type Caterpillar @model @auth(rules: [{allow: private}]) {
   DiapauseChecks: [DiapauseCheck] @hasMany(indexName: "byCaterpillar", fields: ["id"])
   PostDiapauseChecks: [PostDiapauseCheck] @hasMany(indexName: "byCaterpillar", fields: ["id"])
   Mom: Mom! @belongsTo(fields: ["momID"])
+  CreatedBy: AWSEmail!
 }
  
