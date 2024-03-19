@@ -26,7 +26,7 @@ export const Dashboard = () => {
 
   const fetchWeatherData = async (latitude, longitude) => {
     const API_KEY = '885e2c6d5735a75cb18a715790228ca2';
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${API_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`;
 
     try {
       const response = await fetch(url);
@@ -58,8 +58,8 @@ export const Dashboard = () => {
         {weather && weather.main && (
           <div className="weather-container">
             <h2>Current Weather</h2>
-            <p>Temperature: {weather.main.temp}°C</p>
-            <p>Weather: {weather.weather[0].description}</p>
+            <p><b>Temperature:</b> {weather.main.temp}°F</p>
+            <p><b>Weather Description:</b> {weather.weather[0].description}</p>
             {/* You can display more weather information here */}
           </div>
         )}
