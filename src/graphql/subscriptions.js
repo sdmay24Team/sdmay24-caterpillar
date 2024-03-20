@@ -13,6 +13,24 @@ export const onCreatePupaeCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -35,6 +53,10 @@ export const onCreatePupaeCheck = /* GraphQL */ `
       Bucket {
         id
         Notes
+        PupaeChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -58,6 +80,24 @@ export const onUpdatePupaeCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -80,6 +120,10 @@ export const onUpdatePupaeCheck = /* GraphQL */ `
       Bucket {
         id
         Notes
+        PupaeChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -103,6 +147,24 @@ export const onDeletePupaeCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -125,6 +187,10 @@ export const onDeletePupaeCheck = /* GraphQL */ `
       Bucket {
         id
         Notes
+        PupaeChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -162,6 +228,14 @@ export const onCreatePostDiapauseCheck = /* GraphQL */ `
       Jar {
         id
         Notes
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -171,6 +245,18 @@ export const onCreatePostDiapauseCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -180,6 +266,24 @@ export const onCreatePostDiapauseCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -216,6 +320,14 @@ export const onUpdatePostDiapauseCheck = /* GraphQL */ `
       Jar {
         id
         Notes
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -225,6 +337,18 @@ export const onUpdatePostDiapauseCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -234,6 +358,24 @@ export const onUpdatePostDiapauseCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -270,6 +412,14 @@ export const onDeletePostDiapauseCheck = /* GraphQL */ `
       Jar {
         id
         Notes
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -279,6 +429,18 @@ export const onDeletePostDiapauseCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -288,6 +450,24 @@ export const onDeletePostDiapauseCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -320,6 +500,24 @@ export const onCreateDiapauseCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -327,6 +525,14 @@ export const onCreateDiapauseCheck = /* GraphQL */ `
       Jar {
         id
         Notes
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -336,6 +542,18 @@ export const onCreateDiapauseCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -368,6 +586,24 @@ export const onUpdateDiapauseCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -375,6 +611,14 @@ export const onUpdateDiapauseCheck = /* GraphQL */ `
       Jar {
         id
         Notes
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -384,6 +628,18 @@ export const onUpdateDiapauseCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -416,6 +672,24 @@ export const onDeleteDiapauseCheck = /* GraphQL */ `
         Notes
         momID
         State
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        Mom {
+          id
+          NumEggs
+          DateFirstHatch
+          TotalHatched
+          createdAt
+          updatedAt
+          __typename
+        }
+        CreatedBy
         createdAt
         updatedAt
         __typename
@@ -423,6 +697,14 @@ export const onDeleteDiapauseCheck = /* GraphQL */ `
       Jar {
         id
         Notes
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -432,6 +714,18 @@ export const onDeleteDiapauseCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -465,6 +759,14 @@ export const onCreateMomCheck = /* GraphQL */ `
         NumEggs
         DateFirstHatch
         TotalHatched
+        MomChecks {
+          nextToken
+          __typename
+        }
+        Caterpillars {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -472,6 +774,10 @@ export const onCreateMomCheck = /* GraphQL */ `
       Dish {
         id
         Notes
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -481,6 +787,18 @@ export const onCreateMomCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -515,6 +833,14 @@ export const onUpdateMomCheck = /* GraphQL */ `
         NumEggs
         DateFirstHatch
         TotalHatched
+        MomChecks {
+          nextToken
+          __typename
+        }
+        Caterpillars {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -522,6 +848,10 @@ export const onUpdateMomCheck = /* GraphQL */ `
       Dish {
         id
         Notes
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -531,6 +861,18 @@ export const onUpdateMomCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -565,6 +907,14 @@ export const onDeleteMomCheck = /* GraphQL */ `
         NumEggs
         DateFirstHatch
         TotalHatched
+        MomChecks {
+          nextToken
+          __typename
+        }
+        Caterpillars {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -572,6 +922,10 @@ export const onDeleteMomCheck = /* GraphQL */ `
       Dish {
         id
         Notes
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -581,6 +935,18 @@ export const onDeleteMomCheck = /* GraphQL */ `
         Name
         Email
         Initials
+        DiapauseChecks {
+          nextToken
+          __typename
+        }
+        PostDiapauseChecks {
+          nextToken
+          __typename
+        }
+        MomChecks {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
@@ -600,10 +966,36 @@ export const onCreateMom = /* GraphQL */ `
       DateFirstHatch
       TotalHatched
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       Caterpillars {
+        items {
+          id
+          Notes
+          momID
+          State
+          CreatedBy
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -621,10 +1013,36 @@ export const onUpdateMom = /* GraphQL */ `
       DateFirstHatch
       TotalHatched
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       Caterpillars {
+        items {
+          id
+          Notes
+          momID
+          State
+          CreatedBy
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -642,10 +1060,36 @@ export const onDeleteMom = /* GraphQL */ `
       DateFirstHatch
       TotalHatched
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       Caterpillars {
+        items {
+          id
+          Notes
+          momID
+          State
+          CreatedBy
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -697,6 +1141,17 @@ export const onCreateBucket = /* GraphQL */ `
       id
       Notes
       PupaeChecks {
+        items {
+          id
+          DatePupated
+          ReleaseDate
+          Emerged
+          BucketID
+          createdAt
+          updatedAt
+          pupaeCheckCaterpillarId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -712,6 +1167,17 @@ export const onUpdateBucket = /* GraphQL */ `
       id
       Notes
       PupaeChecks {
+        items {
+          id
+          DatePupated
+          ReleaseDate
+          Emerged
+          BucketID
+          createdAt
+          updatedAt
+          pupaeCheckCaterpillarId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -727,6 +1193,17 @@ export const onDeleteBucket = /* GraphQL */ `
       id
       Notes
       PupaeChecks {
+        items {
+          id
+          DatePupated
+          ReleaseDate
+          Emerged
+          BucketID
+          createdAt
+          updatedAt
+          pupaeCheckCaterpillarId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -742,6 +1219,22 @@ export const onCreateDish = /* GraphQL */ `
       id
       Notes
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -757,6 +1250,22 @@ export const onUpdateDish = /* GraphQL */ `
       id
       Notes
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -772,6 +1281,22 @@ export const onDeleteDish = /* GraphQL */ `
       id
       Notes
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -787,10 +1312,40 @@ export const onCreateJar = /* GraphQL */ `
       id
       Notes
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -806,10 +1361,40 @@ export const onUpdateJar = /* GraphQL */ `
       id
       Notes
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -825,10 +1410,40 @@ export const onDeleteJar = /* GraphQL */ `
       id
       Notes
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -848,14 +1463,60 @@ export const onCreateCaretaker = /* GraphQL */ `
       Email
       Initials
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -875,14 +1536,60 @@ export const onUpdateCaretaker = /* GraphQL */ `
       Email
       Initials
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -902,14 +1609,60 @@ export const onDeleteCaretaker = /* GraphQL */ `
       Email
       Initials
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       MomChecks {
+        items {
+          id
+          Date
+          Dev
+          TimeDrinking
+          TimeEating
+          CottonBall
+          NumLeaves
+          Notes
+          MomID
+          DishID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -929,10 +1682,40 @@ export const onCreateCaterpillar = /* GraphQL */ `
       momID
       State
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -941,10 +1724,19 @@ export const onCreateCaterpillar = /* GraphQL */ `
         NumEggs
         DateFirstHatch
         TotalHatched
+        MomChecks {
+          nextToken
+          __typename
+        }
+        Caterpillars {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
       }
+      CreatedBy
       createdAt
       updatedAt
       __typename
@@ -961,10 +1753,40 @@ export const onUpdateCaterpillar = /* GraphQL */ `
       momID
       State
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -973,10 +1795,19 @@ export const onUpdateCaterpillar = /* GraphQL */ `
         NumEggs
         DateFirstHatch
         TotalHatched
+        MomChecks {
+          nextToken
+          __typename
+        }
+        Caterpillars {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
       }
+      CreatedBy
       createdAt
       updatedAt
       __typename
@@ -993,10 +1824,40 @@ export const onDeleteCaterpillar = /* GraphQL */ `
       momID
       State
       DiapauseChecks {
+        items {
+          id
+          Date
+          NumLarvae
+          Notes
+          CaterpillarID
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
       PostDiapauseChecks {
+        items {
+          id
+          CaterpillarID
+          Date
+          InitialLarvae
+          NumLarvae
+          Food
+          Enclosure
+          Water
+          Js
+          NumberPupae
+          Notes
+          JarID
+          CaretakerID
+          createdAt
+          updatedAt
+          __typename
+        }
         nextToken
         __typename
       }
@@ -1005,10 +1866,19 @@ export const onDeleteCaterpillar = /* GraphQL */ `
         NumEggs
         DateFirstHatch
         TotalHatched
+        MomChecks {
+          nextToken
+          __typename
+        }
+        Caterpillars {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
       }
+      CreatedBy
       createdAt
       updatedAt
       __typename
