@@ -4,16 +4,12 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as BucketCreateForm } from "./BucketCreateForm";
-export { default as BucketUpdateForm } from "./BucketUpdateForm";
-export { default as CaretakerCreateForm } from "./CaretakerCreateForm";
-export { default as CaretakerUpdateForm } from "./CaretakerUpdateForm";
-export { default as DishCreateForm } from "./DishCreateForm";
-export { default as DishUpdateForm } from "./DishUpdateForm";
-export { default as JarCreateForm } from "./JarCreateForm";
-export { default as JarUpdateForm } from "./JarUpdateForm";
+export { default as CaterpillarCreateForm } from "./CaterpillarCreateForm";
+export { default as CaterpillarUpdateForm } from "./CaterpillarUpdateForm";
+export { default as CommentCreateForm } from "./CommentCreateForm";
+export { default as CommentUpdateForm } from "./CommentUpdateForm";
 export { default as MediaCreateForm } from "./MediaCreateForm";
 export { default as MediaUpdateForm } from "./MediaUpdateForm";
-export { default as MomCreateForm } from "./MomCreateForm";
-export { default as MomUpdateForm } from "./MomUpdateForm";
+export { default as UserSettingsCreateForm } from "./UserSettingsCreateForm";
+export { default as UserSettingsUpdateForm } from "./UserSettingsUpdateForm";
 export { default as studioTheme } from "./studioTheme";

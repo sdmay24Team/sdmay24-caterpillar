@@ -1,1127 +1,185 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPupaeCheck = /* GraphQL */ `
-  mutation CreatePupaeCheck(
-    $input: CreatePupaeCheckInput!
-    $condition: ModelPupaeCheckConditionInput
+export const createUserSettings = /* GraphQL */ `
+  mutation CreateUserSettings(
+    $input: CreateUserSettingsInput!
+    $condition: ModelUserSettingsConditionInput
   ) {
-    createPupaeCheck(input: $input, condition: $condition) {
+    createUserSettings(input: $input, condition: $condition) {
       id
-      DatePupated
-      Caterpillar {
+      CreatedBy
+      Initials
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateUserSettings = /* GraphQL */ `
+  mutation UpdateUserSettings(
+    $input: UpdateUserSettingsInput!
+    $condition: ModelUserSettingsConditionInput
+  ) {
+    updateUserSettings(input: $input, condition: $condition) {
+      id
+      CreatedBy
+      Initials
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteUserSettings = /* GraphQL */ `
+  mutation DeleteUserSettings(
+    $input: DeleteUserSettingsInput!
+    $condition: ModelUserSettingsConditionInput
+  ) {
+    deleteUserSettings(input: $input, condition: $condition) {
+      id
+      CreatedBy
+      Initials
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      Comment
+      CreatedBy
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      Comment
+      CreatedBy
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      Comment
+      CreatedBy
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createRecord = /* GraphQL */ `
+  mutation CreateRecord(
+    $input: CreateRecordInput!
+    $condition: ModelRecordConditionInput
+  ) {
+    createRecord(input: $input, condition: $condition) {
+      id
+      Date
+      Time
+      LocationOnPlant
+      Status
+      Comment {
         id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
+        Comment
         CreatedBy
         createdAt
         updatedAt
         __typename
       }
-      ReleaseDate
-      ReleaseSite {
-        Country
-        State
-        Address
-        Notes
-        __typename
-      }
-      Emerged
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      BucketID
-      Bucket {
-        id
-        Notes
-        PupaeChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
+      Initials
+      caterpillarID
+      CreatedBy
+      Stage
+      Cage
       createdAt
       updatedAt
-      pupaeCheckCaterpillarId
+      recordCommentId
       __typename
     }
   }
 `;
-export const updatePupaeCheck = /* GraphQL */ `
-  mutation UpdatePupaeCheck(
-    $input: UpdatePupaeCheckInput!
-    $condition: ModelPupaeCheckConditionInput
+export const updateRecord = /* GraphQL */ `
+  mutation UpdateRecord(
+    $input: UpdateRecordInput!
+    $condition: ModelRecordConditionInput
   ) {
-    updatePupaeCheck(input: $input, condition: $condition) {
+    updateRecord(input: $input, condition: $condition) {
       id
-      DatePupated
-      Caterpillar {
+      Date
+      Time
+      LocationOnPlant
+      Status
+      Comment {
         id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
+        Comment
         CreatedBy
         createdAt
         updatedAt
         __typename
       }
-      ReleaseDate
-      ReleaseSite {
-        Country
-        State
-        Address
-        Notes
-        __typename
-      }
-      Emerged
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      BucketID
-      Bucket {
-        id
-        Notes
-        PupaeChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
+      Initials
+      caterpillarID
+      CreatedBy
+      Stage
+      Cage
       createdAt
       updatedAt
-      pupaeCheckCaterpillarId
+      recordCommentId
       __typename
     }
   }
 `;
-export const deletePupaeCheck = /* GraphQL */ `
-  mutation DeletePupaeCheck(
-    $input: DeletePupaeCheckInput!
-    $condition: ModelPupaeCheckConditionInput
+export const deleteRecord = /* GraphQL */ `
+  mutation DeleteRecord(
+    $input: DeleteRecordInput!
+    $condition: ModelRecordConditionInput
   ) {
-    deletePupaeCheck(input: $input, condition: $condition) {
+    deleteRecord(input: $input, condition: $condition) {
       id
-      DatePupated
-      Caterpillar {
+      Date
+      Time
+      LocationOnPlant
+      Status
+      Comment {
         id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
+        Comment
         CreatedBy
         createdAt
         updatedAt
         __typename
       }
-      ReleaseDate
-      ReleaseSite {
-        Country
-        State
-        Address
-        Notes
-        __typename
-      }
-      Emerged
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      BucketID
-      Bucket {
-        id
-        Notes
-        PupaeChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
+      Initials
+      caterpillarID
+      CreatedBy
+      Stage
+      Cage
       createdAt
       updatedAt
-      pupaeCheckCaterpillarId
-      __typename
-    }
-  }
-`;
-export const createPostDiapauseCheck = /* GraphQL */ `
-  mutation CreatePostDiapauseCheck(
-    $input: CreatePostDiapauseCheckInput!
-    $condition: ModelPostDiapauseCheckConditionInput
-  ) {
-    createPostDiapauseCheck(input: $input, condition: $condition) {
-      id
-      CaterpillarID
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      Date
-      InitialLarvae
-      NumLarvae
-      Food
-      Enclosure
-      Water
-      Js
-      NumberPupae
-      Notes
-      JarID
-      CaretakerID
-      Jar {
-        id
-        Notes
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caterpillar {
-        id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
-        CreatedBy
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updatePostDiapauseCheck = /* GraphQL */ `
-  mutation UpdatePostDiapauseCheck(
-    $input: UpdatePostDiapauseCheckInput!
-    $condition: ModelPostDiapauseCheckConditionInput
-  ) {
-    updatePostDiapauseCheck(input: $input, condition: $condition) {
-      id
-      CaterpillarID
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      Date
-      InitialLarvae
-      NumLarvae
-      Food
-      Enclosure
-      Water
-      Js
-      NumberPupae
-      Notes
-      JarID
-      CaretakerID
-      Jar {
-        id
-        Notes
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caterpillar {
-        id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
-        CreatedBy
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deletePostDiapauseCheck = /* GraphQL */ `
-  mutation DeletePostDiapauseCheck(
-    $input: DeletePostDiapauseCheckInput!
-    $condition: ModelPostDiapauseCheckConditionInput
-  ) {
-    deletePostDiapauseCheck(input: $input, condition: $condition) {
-      id
-      CaterpillarID
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      Date
-      InitialLarvae
-      NumLarvae
-      Food
-      Enclosure
-      Water
-      Js
-      NumberPupae
-      Notes
-      JarID
-      CaretakerID
-      Jar {
-        id
-        Notes
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caterpillar {
-        id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
-        CreatedBy
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createDiapauseCheck = /* GraphQL */ `
-  mutation CreateDiapauseCheck(
-    $input: CreateDiapauseCheckInput!
-    $condition: ModelDiapauseCheckConditionInput
-  ) {
-    createDiapauseCheck(input: $input, condition: $condition) {
-      id
-      Date
-      NumLarvae
-      Notes
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      CaterpillarID
-      JarID
-      CaretakerID
-      Caterpillar {
-        id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
-        CreatedBy
-        createdAt
-        updatedAt
-        __typename
-      }
-      Jar {
-        id
-        Notes
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateDiapauseCheck = /* GraphQL */ `
-  mutation UpdateDiapauseCheck(
-    $input: UpdateDiapauseCheckInput!
-    $condition: ModelDiapauseCheckConditionInput
-  ) {
-    updateDiapauseCheck(input: $input, condition: $condition) {
-      id
-      Date
-      NumLarvae
-      Notes
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      CaterpillarID
-      JarID
-      CaretakerID
-      Caterpillar {
-        id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
-        CreatedBy
-        createdAt
-        updatedAt
-        __typename
-      }
-      Jar {
-        id
-        Notes
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteDiapauseCheck = /* GraphQL */ `
-  mutation DeleteDiapauseCheck(
-    $input: DeleteDiapauseCheckInput!
-    $condition: ModelDiapauseCheckConditionInput
-  ) {
-    deleteDiapauseCheck(input: $input, condition: $condition) {
-      id
-      Date
-      NumLarvae
-      Notes
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      CaterpillarID
-      JarID
-      CaretakerID
-      Caterpillar {
-        id
-        Notes
-        momID
-        State
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        Mom {
-          id
-          NumEggs
-          DateFirstHatch
-          TotalHatched
-          createdAt
-          updatedAt
-          __typename
-        }
-        CreatedBy
-        createdAt
-        updatedAt
-        __typename
-      }
-      Jar {
-        id
-        Notes
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createMomCheck = /* GraphQL */ `
-  mutation CreateMomCheck(
-    $input: CreateMomCheckInput!
-    $condition: ModelMomCheckConditionInput
-  ) {
-    createMomCheck(input: $input, condition: $condition) {
-      id
-      Date
-      Dev
-      TimeDrinking
-      TimeEating
-      CottonBall
-      NumLeaves
-      Notes
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      MomID
-      DishID
-      Mom {
-        id
-        NumEggs
-        DateFirstHatch
-        TotalHatched
-        MomChecks {
-          nextToken
-          __typename
-        }
-        Caterpillars {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Dish {
-        id
-        Notes
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      CaretakerID
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateMomCheck = /* GraphQL */ `
-  mutation UpdateMomCheck(
-    $input: UpdateMomCheckInput!
-    $condition: ModelMomCheckConditionInput
-  ) {
-    updateMomCheck(input: $input, condition: $condition) {
-      id
-      Date
-      Dev
-      TimeDrinking
-      TimeEating
-      CottonBall
-      NumLeaves
-      Notes
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      MomID
-      DishID
-      Mom {
-        id
-        NumEggs
-        DateFirstHatch
-        TotalHatched
-        MomChecks {
-          nextToken
-          __typename
-        }
-        Caterpillars {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Dish {
-        id
-        Notes
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      CaretakerID
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteMomCheck = /* GraphQL */ `
-  mutation DeleteMomCheck(
-    $input: DeleteMomCheckInput!
-    $condition: ModelMomCheckConditionInput
-  ) {
-    deleteMomCheck(input: $input, condition: $condition) {
-      id
-      Date
-      Dev
-      TimeDrinking
-      TimeEating
-      CottonBall
-      NumLeaves
-      Notes
-      Weather {
-        Humidity
-        Temperature
-        __typename
-      }
-      MomID
-      DishID
-      Mom {
-        id
-        NumEggs
-        DateFirstHatch
-        TotalHatched
-        MomChecks {
-          nextToken
-          __typename
-        }
-        Caterpillars {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Dish {
-        id
-        Notes
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      Caretaker {
-        id
-        Name
-        Email
-        Initials
-        DiapauseChecks {
-          nextToken
-          __typename
-        }
-        PostDiapauseChecks {
-          nextToken
-          __typename
-        }
-        MomChecks {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      CaretakerID
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createMom = /* GraphQL */ `
-  mutation CreateMom(
-    $input: CreateMomInput!
-    $condition: ModelMomConditionInput
-  ) {
-    createMom(input: $input, condition: $condition) {
-      id
-      NumEggs
-      DateFirstHatch
-      TotalHatched
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      Caterpillars {
-        items {
-          id
-          Notes
-          momID
-          State
-          CreatedBy
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateMom = /* GraphQL */ `
-  mutation UpdateMom(
-    $input: UpdateMomInput!
-    $condition: ModelMomConditionInput
-  ) {
-    updateMom(input: $input, condition: $condition) {
-      id
-      NumEggs
-      DateFirstHatch
-      TotalHatched
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      Caterpillars {
-        items {
-          id
-          Notes
-          momID
-          State
-          CreatedBy
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteMom = /* GraphQL */ `
-  mutation DeleteMom(
-    $input: DeleteMomInput!
-    $condition: ModelMomConditionInput
-  ) {
-    deleteMom(input: $input, condition: $condition) {
-      id
-      NumEggs
-      DateFirstHatch
-      TotalHatched
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      Caterpillars {
-        items {
-          id
-          Notes
-          momID
-          State
-          CreatedBy
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
+      recordCommentId
       __typename
     }
   }
@@ -1135,6 +193,7 @@ export const createMedia = /* GraphQL */ `
       id
       CaterpillarID
       BlobID
+      CreatedBy
       createdAt
       updatedAt
       __typename
@@ -1150,6 +209,7 @@ export const updateMedia = /* GraphQL */ `
       id
       CaterpillarID
       BlobID
+      CreatedBy
       createdAt
       updatedAt
       __typename
@@ -1165,573 +225,7 @@ export const deleteMedia = /* GraphQL */ `
       id
       CaterpillarID
       BlobID
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createBucket = /* GraphQL */ `
-  mutation CreateBucket(
-    $input: CreateBucketInput!
-    $condition: ModelBucketConditionInput
-  ) {
-    createBucket(input: $input, condition: $condition) {
-      id
-      Notes
-      PupaeChecks {
-        items {
-          id
-          DatePupated
-          ReleaseDate
-          Emerged
-          BucketID
-          createdAt
-          updatedAt
-          pupaeCheckCaterpillarId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateBucket = /* GraphQL */ `
-  mutation UpdateBucket(
-    $input: UpdateBucketInput!
-    $condition: ModelBucketConditionInput
-  ) {
-    updateBucket(input: $input, condition: $condition) {
-      id
-      Notes
-      PupaeChecks {
-        items {
-          id
-          DatePupated
-          ReleaseDate
-          Emerged
-          BucketID
-          createdAt
-          updatedAt
-          pupaeCheckCaterpillarId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteBucket = /* GraphQL */ `
-  mutation DeleteBucket(
-    $input: DeleteBucketInput!
-    $condition: ModelBucketConditionInput
-  ) {
-    deleteBucket(input: $input, condition: $condition) {
-      id
-      Notes
-      PupaeChecks {
-        items {
-          id
-          DatePupated
-          ReleaseDate
-          Emerged
-          BucketID
-          createdAt
-          updatedAt
-          pupaeCheckCaterpillarId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createDish = /* GraphQL */ `
-  mutation CreateDish(
-    $input: CreateDishInput!
-    $condition: ModelDishConditionInput
-  ) {
-    createDish(input: $input, condition: $condition) {
-      id
-      Notes
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateDish = /* GraphQL */ `
-  mutation UpdateDish(
-    $input: UpdateDishInput!
-    $condition: ModelDishConditionInput
-  ) {
-    updateDish(input: $input, condition: $condition) {
-      id
-      Notes
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteDish = /* GraphQL */ `
-  mutation DeleteDish(
-    $input: DeleteDishInput!
-    $condition: ModelDishConditionInput
-  ) {
-    deleteDish(input: $input, condition: $condition) {
-      id
-      Notes
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createJar = /* GraphQL */ `
-  mutation CreateJar(
-    $input: CreateJarInput!
-    $condition: ModelJarConditionInput
-  ) {
-    createJar(input: $input, condition: $condition) {
-      id
-      Notes
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateJar = /* GraphQL */ `
-  mutation UpdateJar(
-    $input: UpdateJarInput!
-    $condition: ModelJarConditionInput
-  ) {
-    updateJar(input: $input, condition: $condition) {
-      id
-      Notes
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteJar = /* GraphQL */ `
-  mutation DeleteJar(
-    $input: DeleteJarInput!
-    $condition: ModelJarConditionInput
-  ) {
-    deleteJar(input: $input, condition: $condition) {
-      id
-      Notes
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createCaretaker = /* GraphQL */ `
-  mutation CreateCaretaker(
-    $input: CreateCaretakerInput!
-    $condition: ModelCaretakerConditionInput
-  ) {
-    createCaretaker(input: $input, condition: $condition) {
-      id
-      Name
-      Email
-      Initials
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateCaretaker = /* GraphQL */ `
-  mutation UpdateCaretaker(
-    $input: UpdateCaretakerInput!
-    $condition: ModelCaretakerConditionInput
-  ) {
-    updateCaretaker(input: $input, condition: $condition) {
-      id
-      Name
-      Email
-      Initials
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteCaretaker = /* GraphQL */ `
-  mutation DeleteCaretaker(
-    $input: DeleteCaretakerInput!
-    $condition: ModelCaretakerConditionInput
-  ) {
-    deleteCaretaker(input: $input, condition: $condition) {
-      id
-      Name
-      Email
-      Initials
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      MomChecks {
-        items {
-          id
-          Date
-          Dev
-          TimeDrinking
-          TimeEating
-          CottonBall
-          NumLeaves
-          Notes
-          MomID
-          DishID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
+      CreatedBy
       createdAt
       updatedAt
       __typename
@@ -1745,65 +239,49 @@ export const createCaterpillar = /* GraphQL */ `
   ) {
     createCaterpillar(input: $input, condition: $condition) {
       id
-      Notes
-      momID
-      State
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      Mom {
-        id
-        NumEggs
-        DateFirstHatch
-        TotalHatched
-        MomChecks {
-          nextToken
-          __typename
-        }
-        Caterpillars {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
+      IndividualID
       CreatedBy
+      DateFound
+      SiteFound
+      LocationFound
+      TimeFound
+      HostPlant
+      CollectedBy
+      Stage
+      Slot
+      Records {
+        items {
+          id
+          Date
+          Time
+          LocationOnPlant
+          Status
+          Comment {
+            id
+            Comment
+            CreatedBy
+            createdAt
+            updatedAt
+            __typename
+          }
+          Initials
+          caterpillarID
+          CreatedBy
+          Stage
+          Cage
+          createdAt
+          updatedAt
+          recordCommentId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      DateEclosed
+      DateReleased
+      RegionReleased
+      LocationReleased
+      Cage
       createdAt
       updatedAt
       __typename
@@ -1817,65 +295,49 @@ export const updateCaterpillar = /* GraphQL */ `
   ) {
     updateCaterpillar(input: $input, condition: $condition) {
       id
-      Notes
-      momID
-      State
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      Mom {
-        id
-        NumEggs
-        DateFirstHatch
-        TotalHatched
-        MomChecks {
-          nextToken
-          __typename
-        }
-        Caterpillars {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
+      IndividualID
       CreatedBy
+      DateFound
+      SiteFound
+      LocationFound
+      TimeFound
+      HostPlant
+      CollectedBy
+      Stage
+      Slot
+      Records {
+        items {
+          id
+          Date
+          Time
+          LocationOnPlant
+          Status
+          Comment {
+            id
+            Comment
+            CreatedBy
+            createdAt
+            updatedAt
+            __typename
+          }
+          Initials
+          caterpillarID
+          CreatedBy
+          Stage
+          Cage
+          createdAt
+          updatedAt
+          recordCommentId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      DateEclosed
+      DateReleased
+      RegionReleased
+      LocationReleased
+      Cage
       createdAt
       updatedAt
       __typename
@@ -1889,65 +351,49 @@ export const deleteCaterpillar = /* GraphQL */ `
   ) {
     deleteCaterpillar(input: $input, condition: $condition) {
       id
-      Notes
-      momID
-      State
-      DiapauseChecks {
-        items {
-          id
-          Date
-          NumLarvae
-          Notes
-          CaterpillarID
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      PostDiapauseChecks {
-        items {
-          id
-          CaterpillarID
-          Date
-          InitialLarvae
-          NumLarvae
-          Food
-          Enclosure
-          Water
-          Js
-          NumberPupae
-          Notes
-          JarID
-          CaretakerID
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      Mom {
-        id
-        NumEggs
-        DateFirstHatch
-        TotalHatched
-        MomChecks {
-          nextToken
-          __typename
-        }
-        Caterpillars {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
+      IndividualID
       CreatedBy
+      DateFound
+      SiteFound
+      LocationFound
+      TimeFound
+      HostPlant
+      CollectedBy
+      Stage
+      Slot
+      Records {
+        items {
+          id
+          Date
+          Time
+          LocationOnPlant
+          Status
+          Comment {
+            id
+            Comment
+            CreatedBy
+            createdAt
+            updatedAt
+            __typename
+          }
+          Initials
+          caterpillarID
+          CreatedBy
+          Stage
+          Cage
+          createdAt
+          updatedAt
+          recordCommentId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      DateEclosed
+      DateReleased
+      RegionReleased
+      LocationReleased
+      Cage
       createdAt
       updatedAt
       __typename

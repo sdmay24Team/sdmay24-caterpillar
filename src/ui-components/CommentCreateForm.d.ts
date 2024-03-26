@@ -21,26 +21,28 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type JarUpdateFormInputValues = {
-    Notes?: string;
+export declare type CommentCreateFormInputValues = {
+    Comment?: string;
+    CreatedBy?: string;
 };
-export declare type JarUpdateFormValidationValues = {
-    Notes?: ValidationFunction<string>;
+export declare type CommentCreateFormValidationValues = {
+    Comment?: ValidationFunction<string>;
+    CreatedBy?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type JarUpdateFormOverridesProps = {
-    JarUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    Notes?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type CommentCreateFormOverridesProps = {
+    CommentCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    Comment?: PrimitiveOverrideProps<TextFieldProps>;
+    CreatedBy?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type JarUpdateFormProps = React.PropsWithChildren<{
-    overrides?: JarUpdateFormOverridesProps | undefined | null;
+export declare type CommentCreateFormProps = React.PropsWithChildren<{
+    overrides?: CommentCreateFormOverridesProps | undefined | null;
 } & {
-    id?: string;
-    jar?: any;
-    onSubmit?: (fields: JarUpdateFormInputValues) => JarUpdateFormInputValues;
-    onSuccess?: (fields: JarUpdateFormInputValues) => void;
-    onError?: (fields: JarUpdateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: JarUpdateFormInputValues) => JarUpdateFormInputValues;
-    onValidate?: JarUpdateFormValidationValues;
+    clearOnSuccess?: boolean;
+    onSubmit?: (fields: CommentCreateFormInputValues) => CommentCreateFormInputValues;
+    onSuccess?: (fields: CommentCreateFormInputValues) => void;
+    onError?: (fields: CommentCreateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: CommentCreateFormInputValues) => CommentCreateFormInputValues;
+    onValidate?: CommentCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function JarUpdateForm(props: JarUpdateFormProps): React.ReactElement;
+export default function CommentCreateForm(props: CommentCreateFormProps): React.ReactElement;

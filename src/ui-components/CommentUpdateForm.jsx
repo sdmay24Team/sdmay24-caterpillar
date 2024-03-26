@@ -9,13 +9,13 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getMom } from "../graphql/queries";
-import { updateMom } from "../graphql/mutations";
+import { getComment } from "../graphql/queries";
+import { updateComment } from "../graphql/mutations";
 const client = generateClient();
-export default function MomUpdateForm(props) {
+export default function CommentUpdateForm(props) {
   const {
     id: idProp,
-    mom: momModelProp,
+    comment: commentModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -25,47 +25,39 @@ export default function MomUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    NumEggs: "",
-    DateFirstHatch: "",
-    TotalHatched: "",
+    Comment: "",
+    CreatedBy: "",
   };
-  const [NumEggs, setNumEggs] = React.useState(initialValues.NumEggs);
-  const [DateFirstHatch, setDateFirstHatch] = React.useState(
-    initialValues.DateFirstHatch
-  );
-  const [TotalHatched, setTotalHatched] = React.useState(
-    initialValues.TotalHatched
-  );
+  const [comment, setComment] = React.useState(initialValues.Comment);
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = momRecord
-      ? { ...initialValues, ...momRecord }
+    const cleanValues = commentRecord
+      ? { ...initialValues, ...commentRecord }
       : initialValues;
-    setNumEggs(cleanValues.NumEggs);
-    setDateFirstHatch(cleanValues.DateFirstHatch);
-    setTotalHatched(cleanValues.TotalHatched);
+    setComment(cleanValues.Comment);
+    setCreatedBy(cleanValues.CreatedBy);
     setErrors({});
   };
-  const [momRecord, setMomRecord] = React.useState(momModelProp);
+  const [commentRecord, setCommentRecord] = React.useState(commentModelProp);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? (
             await client.graphql({
-              query: getMom.replaceAll("__typename", ""),
+              query: getComment.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
-          )?.data?.getMom
-        : momModelProp;
-      setMomRecord(record);
+          )?.data?.getComment
+        : commentModelProp;
+      setCommentRecord(record);
     };
     queryData();
-  }, [idProp, momModelProp]);
-  React.useEffect(resetStateValues, [momRecord]);
+  }, [idProp, commentModelProp]);
+  React.useEffect(resetStateValues, [commentRecord]);
   const validations = {
-    NumEggs: [{ type: "Required" }],
-    DateFirstHatch: [],
-    TotalHatched: [],
+    Comment: [{ type: "Required" }],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -84,23 +76,6 @@ export default function MomUpdateForm(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
-  const convertToLocal = (date) => {
-    const df = new Intl.DateTimeFormat("default", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      calendar: "iso8601",
-      numberingSystem: "latn",
-      hourCycle: "h23",
-    });
-    const parts = df.formatToParts(date).reduce((acc, part) => {
-      acc[part.type] = part.value;
-      return acc;
-    }, {});
-    return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
-  };
   return (
     <Grid
       as="form"
@@ -110,9 +85,8 @@ export default function MomUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          NumEggs,
-          DateFirstHatch: DateFirstHatch ?? null,
-          TotalHatched: TotalHatched ?? null,
+          Comment: comment,
+          CreatedBy,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -143,10 +117,10 @@ export default function MomUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateMom.replaceAll("__typename", ""),
+            query: updateComment.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: momRecord.id,
+                id: commentRecord.id,
                 ...modelFields,
               },
             },
@@ -161,96 +135,58 @@ export default function MomUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "MomUpdateForm")}
+      {...getOverrideProps(overrides, "CommentUpdateForm")}
       {...rest}
     >
       <TextField
-        label="Num eggs"
+        label="Comment"
         isRequired={true}
         isReadOnly={false}
-        type="number"
-        step="any"
-        value={NumEggs}
+        value={comment}
         onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              NumEggs: value,
-              DateFirstHatch,
-              TotalHatched,
+              Comment: value,
+              CreatedBy,
             };
             const result = onChange(modelFields);
-            value = result?.NumEggs ?? value;
+            value = result?.Comment ?? value;
           }
-          if (errors.NumEggs?.hasError) {
-            runValidationTasks("NumEggs", value);
+          if (errors.Comment?.hasError) {
+            runValidationTasks("Comment", value);
           }
-          setNumEggs(value);
+          setComment(value);
         }}
-        onBlur={() => runValidationTasks("NumEggs", NumEggs)}
-        errorMessage={errors.NumEggs?.errorMessage}
-        hasError={errors.NumEggs?.hasError}
-        {...getOverrideProps(overrides, "NumEggs")}
+        onBlur={() => runValidationTasks("Comment", comment)}
+        errorMessage={errors.Comment?.errorMessage}
+        hasError={errors.Comment?.hasError}
+        {...getOverrideProps(overrides, "Comment")}
       ></TextField>
       <TextField
-        label="Date first hatch"
-        isRequired={false}
+        label="Created by"
+        isRequired={true}
         isReadOnly={false}
-        type="datetime-local"
-        value={DateFirstHatch && convertToLocal(new Date(DateFirstHatch))}
+        value={CreatedBy}
         onChange={(e) => {
-          let value =
-            e.target.value === "" ? "" : new Date(e.target.value).toISOString();
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              NumEggs,
-              DateFirstHatch: value,
-              TotalHatched,
+              Comment: comment,
+              CreatedBy: value,
             };
             const result = onChange(modelFields);
-            value = result?.DateFirstHatch ?? value;
+            value = result?.CreatedBy ?? value;
           }
-          if (errors.DateFirstHatch?.hasError) {
-            runValidationTasks("DateFirstHatch", value);
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
           }
-          setDateFirstHatch(value);
+          setCreatedBy(value);
         }}
-        onBlur={() => runValidationTasks("DateFirstHatch", DateFirstHatch)}
-        errorMessage={errors.DateFirstHatch?.errorMessage}
-        hasError={errors.DateFirstHatch?.hasError}
-        {...getOverrideProps(overrides, "DateFirstHatch")}
-      ></TextField>
-      <TextField
-        label="Total hatched"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={TotalHatched}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              NumEggs,
-              DateFirstHatch,
-              TotalHatched: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.TotalHatched ?? value;
-          }
-          if (errors.TotalHatched?.hasError) {
-            runValidationTasks("TotalHatched", value);
-          }
-          setTotalHatched(value);
-        }}
-        onBlur={() => runValidationTasks("TotalHatched", TotalHatched)}
-        errorMessage={errors.TotalHatched?.errorMessage}
-        hasError={errors.TotalHatched?.hasError}
-        {...getOverrideProps(overrides, "TotalHatched")}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
       ></TextField>
       <Flex
         justifyContent="space-between"
@@ -263,7 +199,7 @@ export default function MomUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || momModelProp)}
+          isDisabled={!(idProp || commentModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -275,7 +211,7 @@ export default function MomUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || momModelProp) ||
+              !(idProp || commentModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

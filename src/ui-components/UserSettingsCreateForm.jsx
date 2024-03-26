@@ -9,9 +9,9 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { createDish } from "../graphql/mutations";
+import { createUserSettings } from "../graphql/mutations";
 const client = generateClient();
-export default function DishCreateForm(props) {
+export default function UserSettingsCreateForm(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -23,16 +23,20 @@ export default function DishCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    Notes: "",
+    CreatedBy: "",
+    Initials: "",
   };
-  const [Notes, setNotes] = React.useState(initialValues.Notes);
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
+  const [Initials, setInitials] = React.useState(initialValues.Initials);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setNotes(initialValues.Notes);
+    setCreatedBy(initialValues.CreatedBy);
+    setInitials(initialValues.Initials);
     setErrors({});
   };
   const validations = {
-    Notes: [],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
+    Initials: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -60,7 +64,8 @@ export default function DishCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          Notes,
+          CreatedBy,
+          Initials,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -91,7 +96,7 @@ export default function DishCreateForm(props) {
             }
           });
           await client.graphql({
-            query: createDish.replaceAll("__typename", ""),
+            query: createUserSettings.replaceAll("__typename", ""),
             variables: {
               input: {
                 ...modelFields,
@@ -111,32 +116,58 @@ export default function DishCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "DishCreateForm")}
+      {...getOverrideProps(overrides, "UserSettingsCreateForm")}
       {...rest}
     >
       <TextField
-        label="Notes"
-        isRequired={false}
+        label="Created by"
+        isRequired={true}
         isReadOnly={false}
-        value={Notes}
+        value={CreatedBy}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Notes: value,
+              CreatedBy: value,
+              Initials,
             };
             const result = onChange(modelFields);
-            value = result?.Notes ?? value;
+            value = result?.CreatedBy ?? value;
           }
-          if (errors.Notes?.hasError) {
-            runValidationTasks("Notes", value);
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
           }
-          setNotes(value);
+          setCreatedBy(value);
         }}
-        onBlur={() => runValidationTasks("Notes", Notes)}
-        errorMessage={errors.Notes?.errorMessage}
-        hasError={errors.Notes?.hasError}
-        {...getOverrideProps(overrides, "Notes")}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
+      ></TextField>
+      <TextField
+        label="Initials"
+        isRequired={true}
+        isReadOnly={false}
+        value={Initials}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              CreatedBy,
+              Initials: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.Initials ?? value;
+          }
+          if (errors.Initials?.hasError) {
+            runValidationTasks("Initials", value);
+          }
+          setInitials(value);
+        }}
+        onBlur={() => runValidationTasks("Initials", Initials)}
+        errorMessage={errors.Initials?.errorMessage}
+        hasError={errors.Initials?.hasError}
+        {...getOverrideProps(overrides, "Initials")}
       ></TextField>
       <Flex
         justifyContent="space-between"

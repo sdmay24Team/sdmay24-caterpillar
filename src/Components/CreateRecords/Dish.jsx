@@ -8,7 +8,10 @@ import {
      return (
       <div>
         <NavBar />
-        <div className="container1 "><DishCreateForm /></div>
+        <div className="container1 ">
+          {//<DishCreateForm />
+          }
+        </div>
          
        </div>
      )

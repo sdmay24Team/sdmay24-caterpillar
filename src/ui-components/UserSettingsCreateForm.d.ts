@@ -21,25 +21,28 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type DishCreateFormInputValues = {
-    Notes?: string;
+export declare type UserSettingsCreateFormInputValues = {
+    CreatedBy?: string;
+    Initials?: string;
 };
-export declare type DishCreateFormValidationValues = {
-    Notes?: ValidationFunction<string>;
+export declare type UserSettingsCreateFormValidationValues = {
+    CreatedBy?: ValidationFunction<string>;
+    Initials?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type DishCreateFormOverridesProps = {
-    DishCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    Notes?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type UserSettingsCreateFormOverridesProps = {
+    UserSettingsCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    CreatedBy?: PrimitiveOverrideProps<TextFieldProps>;
+    Initials?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type DishCreateFormProps = React.PropsWithChildren<{
-    overrides?: DishCreateFormOverridesProps | undefined | null;
+export declare type UserSettingsCreateFormProps = React.PropsWithChildren<{
+    overrides?: UserSettingsCreateFormOverridesProps | undefined | null;
 } & {
     clearOnSuccess?: boolean;
-    onSubmit?: (fields: DishCreateFormInputValues) => DishCreateFormInputValues;
-    onSuccess?: (fields: DishCreateFormInputValues) => void;
-    onError?: (fields: DishCreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: DishCreateFormInputValues) => DishCreateFormInputValues;
-    onValidate?: DishCreateFormValidationValues;
+    onSubmit?: (fields: UserSettingsCreateFormInputValues) => UserSettingsCreateFormInputValues;
+    onSuccess?: (fields: UserSettingsCreateFormInputValues) => void;
+    onError?: (fields: UserSettingsCreateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: UserSettingsCreateFormInputValues) => UserSettingsCreateFormInputValues;
+    onValidate?: UserSettingsCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function DishCreateForm(props: DishCreateFormProps): React.ReactElement;
+export default function UserSettingsCreateForm(props: UserSettingsCreateFormProps): React.ReactElement;

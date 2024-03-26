@@ -24,16 +24,19 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type MediaCreateFormInputValues = {
     CaterpillarID?: string;
     BlobID?: string;
+    CreatedBy?: string;
 };
 export declare type MediaCreateFormValidationValues = {
     CaterpillarID?: ValidationFunction<string>;
     BlobID?: ValidationFunction<string>;
+    CreatedBy?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MediaCreateFormOverridesProps = {
     MediaCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     CaterpillarID?: PrimitiveOverrideProps<TextFieldProps>;
     BlobID?: PrimitiveOverrideProps<TextFieldProps>;
+    CreatedBy?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type MediaCreateFormProps = React.PropsWithChildren<{
     overrides?: MediaCreateFormOverridesProps | undefined | null;

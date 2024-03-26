@@ -9,13 +9,13 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getCaretaker } from "../graphql/queries";
-import { updateCaretaker } from "../graphql/mutations";
+import { getUserSettings } from "../graphql/queries";
+import { updateUserSettings } from "../graphql/mutations";
 const client = generateClient();
-export default function CaretakerUpdateForm(props) {
+export default function UserSettingsUpdateForm(props) {
   const {
     id: idProp,
-    caretaker: caretakerModelProp,
+    userSettings: userSettingsModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -25,43 +25,40 @@ export default function CaretakerUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    Name: "",
-    Email: "",
+    CreatedBy: "",
     Initials: "",
   };
-  const [Name, setName] = React.useState(initialValues.Name);
-  const [Email, setEmail] = React.useState(initialValues.Email);
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [Initials, setInitials] = React.useState(initialValues.Initials);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = caretakerRecord
-      ? { ...initialValues, ...caretakerRecord }
+    const cleanValues = userSettingsRecord
+      ? { ...initialValues, ...userSettingsRecord }
       : initialValues;
-    setName(cleanValues.Name);
-    setEmail(cleanValues.Email);
+    setCreatedBy(cleanValues.CreatedBy);
     setInitials(cleanValues.Initials);
     setErrors({});
   };
-  const [caretakerRecord, setCaretakerRecord] =
-    React.useState(caretakerModelProp);
+  const [userSettingsRecord, setUserSettingsRecord] = React.useState(
+    userSettingsModelProp
+  );
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? (
             await client.graphql({
-              query: getCaretaker.replaceAll("__typename", ""),
+              query: getUserSettings.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
-          )?.data?.getCaretaker
-        : caretakerModelProp;
-      setCaretakerRecord(record);
+          )?.data?.getUserSettings
+        : userSettingsModelProp;
+      setUserSettingsRecord(record);
     };
     queryData();
-  }, [idProp, caretakerModelProp]);
-  React.useEffect(resetStateValues, [caretakerRecord]);
+  }, [idProp, userSettingsModelProp]);
+  React.useEffect(resetStateValues, [userSettingsRecord]);
   const validations = {
-    Name: [{ type: "Required" }],
-    Email: [{ type: "Required" }, { type: "Email" }],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
     Initials: [{ type: "Required" }],
   };
   const runValidationTasks = async (
@@ -90,8 +87,7 @@ export default function CaretakerUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          Name,
-          Email,
+          CreatedBy,
           Initials,
         };
         const validationResponses = await Promise.all(
@@ -123,10 +119,10 @@ export default function CaretakerUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateCaretaker.replaceAll("__typename", ""),
+            query: updateUserSettings.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: caretakerRecord.id,
+                id: userSettingsRecord.id,
                 ...modelFields,
               },
             },
@@ -141,60 +137,33 @@ export default function CaretakerUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "CaretakerUpdateForm")}
+      {...getOverrideProps(overrides, "UserSettingsUpdateForm")}
       {...rest}
     >
       <TextField
-        label="Name"
+        label="Created by"
         isRequired={true}
         isReadOnly={false}
-        value={Name}
+        value={CreatedBy}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Name: value,
-              Email,
+              CreatedBy: value,
               Initials,
             };
             const result = onChange(modelFields);
-            value = result?.Name ?? value;
+            value = result?.CreatedBy ?? value;
           }
-          if (errors.Name?.hasError) {
-            runValidationTasks("Name", value);
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
           }
-          setName(value);
+          setCreatedBy(value);
         }}
-        onBlur={() => runValidationTasks("Name", Name)}
-        errorMessage={errors.Name?.errorMessage}
-        hasError={errors.Name?.hasError}
-        {...getOverrideProps(overrides, "Name")}
-      ></TextField>
-      <TextField
-        label="Email"
-        isRequired={true}
-        isReadOnly={false}
-        value={Email}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              Name,
-              Email: value,
-              Initials,
-            };
-            const result = onChange(modelFields);
-            value = result?.Email ?? value;
-          }
-          if (errors.Email?.hasError) {
-            runValidationTasks("Email", value);
-          }
-          setEmail(value);
-        }}
-        onBlur={() => runValidationTasks("Email", Email)}
-        errorMessage={errors.Email?.errorMessage}
-        hasError={errors.Email?.hasError}
-        {...getOverrideProps(overrides, "Email")}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
       ></TextField>
       <TextField
         label="Initials"
@@ -205,8 +174,7 @@ export default function CaretakerUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Name,
-              Email,
+              CreatedBy,
               Initials: value,
             };
             const result = onChange(modelFields);
@@ -233,7 +201,7 @@ export default function CaretakerUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || caretakerModelProp)}
+          isDisabled={!(idProp || userSettingsModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -245,7 +213,7 @@ export default function CaretakerUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || caretakerModelProp) ||
+              !(idProp || userSettingsModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

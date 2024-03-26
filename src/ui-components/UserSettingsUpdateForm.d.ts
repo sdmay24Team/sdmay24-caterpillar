@@ -21,31 +21,29 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type CaretakerCreateFormInputValues = {
-    Name?: string;
-    Email?: string;
+export declare type UserSettingsUpdateFormInputValues = {
+    CreatedBy?: string;
     Initials?: string;
 };
-export declare type CaretakerCreateFormValidationValues = {
-    Name?: ValidationFunction<string>;
-    Email?: ValidationFunction<string>;
+export declare type UserSettingsUpdateFormValidationValues = {
+    CreatedBy?: ValidationFunction<string>;
     Initials?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type CaretakerCreateFormOverridesProps = {
-    CaretakerCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    Name?: PrimitiveOverrideProps<TextFieldProps>;
-    Email?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type UserSettingsUpdateFormOverridesProps = {
+    UserSettingsUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    CreatedBy?: PrimitiveOverrideProps<TextFieldProps>;
     Initials?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type CaretakerCreateFormProps = React.PropsWithChildren<{
-    overrides?: CaretakerCreateFormOverridesProps | undefined | null;
+export declare type UserSettingsUpdateFormProps = React.PropsWithChildren<{
+    overrides?: UserSettingsUpdateFormOverridesProps | undefined | null;
 } & {
-    clearOnSuccess?: boolean;
-    onSubmit?: (fields: CaretakerCreateFormInputValues) => CaretakerCreateFormInputValues;
-    onSuccess?: (fields: CaretakerCreateFormInputValues) => void;
-    onError?: (fields: CaretakerCreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: CaretakerCreateFormInputValues) => CaretakerCreateFormInputValues;
-    onValidate?: CaretakerCreateFormValidationValues;
+    id?: string;
+    userSettings?: any;
+    onSubmit?: (fields: UserSettingsUpdateFormInputValues) => UserSettingsUpdateFormInputValues;
+    onSuccess?: (fields: UserSettingsUpdateFormInputValues) => void;
+    onError?: (fields: UserSettingsUpdateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: UserSettingsUpdateFormInputValues) => UserSettingsUpdateFormInputValues;
+    onValidate?: UserSettingsUpdateFormValidationValues;
 } & React.CSSProperties>;
-export default function CaretakerCreateForm(props: CaretakerCreateFormProps): React.ReactElement;
+export default function UserSettingsUpdateForm(props: UserSettingsUpdateFormProps): React.ReactElement;

@@ -9,13 +9,11 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getJar } from "../graphql/queries";
-import { updateJar } from "../graphql/mutations";
+import { createComment } from "../graphql/mutations";
 const client = generateClient();
-export default function JarUpdateForm(props) {
+export default function CommentCreateForm(props) {
   const {
-    id: idProp,
-    jar: jarModelProp,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -25,35 +23,20 @@ export default function JarUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    Notes: "",
+    Comment: "",
+    CreatedBy: "",
   };
-  const [Notes, setNotes] = React.useState(initialValues.Notes);
+  const [comment, setComment] = React.useState(initialValues.Comment);
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = jarRecord
-      ? { ...initialValues, ...jarRecord }
-      : initialValues;
-    setNotes(cleanValues.Notes);
+    setComment(initialValues.Comment);
+    setCreatedBy(initialValues.CreatedBy);
     setErrors({});
   };
-  const [jarRecord, setJarRecord] = React.useState(jarModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getJar.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getJar
-        : jarModelProp;
-      setJarRecord(record);
-    };
-    queryData();
-  }, [idProp, jarModelProp]);
-  React.useEffect(resetStateValues, [jarRecord]);
   const validations = {
-    Notes: [],
+    Comment: [{ type: "Required" }],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -81,7 +64,8 @@ export default function JarUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          Notes: Notes ?? null,
+          Comment: comment,
+          CreatedBy,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -112,16 +96,18 @@ export default function JarUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateJar.replaceAll("__typename", ""),
+            query: createComment.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: jarRecord.id,
                 ...modelFields,
               },
             },
           });
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -130,46 +116,71 @@ export default function JarUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "JarUpdateForm")}
+      {...getOverrideProps(overrides, "CommentCreateForm")}
       {...rest}
     >
       <TextField
-        label="Notes"
-        isRequired={false}
+        label="Comment"
+        isRequired={true}
         isReadOnly={false}
-        value={Notes}
+        value={comment}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Notes: value,
+              Comment: value,
+              CreatedBy,
             };
             const result = onChange(modelFields);
-            value = result?.Notes ?? value;
+            value = result?.Comment ?? value;
           }
-          if (errors.Notes?.hasError) {
-            runValidationTasks("Notes", value);
+          if (errors.Comment?.hasError) {
+            runValidationTasks("Comment", value);
           }
-          setNotes(value);
+          setComment(value);
         }}
-        onBlur={() => runValidationTasks("Notes", Notes)}
-        errorMessage={errors.Notes?.errorMessage}
-        hasError={errors.Notes?.hasError}
-        {...getOverrideProps(overrides, "Notes")}
+        onBlur={() => runValidationTasks("Comment", comment)}
+        errorMessage={errors.Comment?.errorMessage}
+        hasError={errors.Comment?.hasError}
+        {...getOverrideProps(overrides, "Comment")}
+      ></TextField>
+      <TextField
+        label="Created by"
+        isRequired={true}
+        isReadOnly={false}
+        value={CreatedBy}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Comment: comment,
+              CreatedBy: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.CreatedBy ?? value;
+          }
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
+          }
+          setCreatedBy(value);
+        }}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
       ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || jarModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -179,10 +190,7 @@ export default function JarUpdateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || jarModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

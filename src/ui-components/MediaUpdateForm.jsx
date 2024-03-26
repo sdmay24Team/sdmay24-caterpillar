@@ -27,11 +27,13 @@ export default function MediaUpdateForm(props) {
   const initialValues = {
     CaterpillarID: "",
     BlobID: "",
+    CreatedBy: "",
   };
   const [CaterpillarID, setCaterpillarID] = React.useState(
     initialValues.CaterpillarID
   );
   const [BlobID, setBlobID] = React.useState(initialValues.BlobID);
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = mediaRecord
@@ -39,6 +41,7 @@ export default function MediaUpdateForm(props) {
       : initialValues;
     setCaterpillarID(cleanValues.CaterpillarID);
     setBlobID(cleanValues.BlobID);
+    setCreatedBy(cleanValues.CreatedBy);
     setErrors({});
   };
   const [mediaRecord, setMediaRecord] = React.useState(mediaModelProp);
@@ -60,6 +63,7 @@ export default function MediaUpdateForm(props) {
   const validations = {
     CaterpillarID: [{ type: "Required" }],
     BlobID: [],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -89,6 +93,7 @@ export default function MediaUpdateForm(props) {
         let modelFields = {
           CaterpillarID,
           BlobID: BlobID ?? null,
+          CreatedBy,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -151,6 +156,7 @@ export default function MediaUpdateForm(props) {
             const modelFields = {
               CaterpillarID: value,
               BlobID,
+              CreatedBy,
             };
             const result = onChange(modelFields);
             value = result?.CaterpillarID ?? value;
@@ -176,6 +182,7 @@ export default function MediaUpdateForm(props) {
             const modelFields = {
               CaterpillarID,
               BlobID: value,
+              CreatedBy,
             };
             const result = onChange(modelFields);
             value = result?.BlobID ?? value;
@@ -189,6 +196,32 @@ export default function MediaUpdateForm(props) {
         errorMessage={errors.BlobID?.errorMessage}
         hasError={errors.BlobID?.hasError}
         {...getOverrideProps(overrides, "BlobID")}
+      ></TextField>
+      <TextField
+        label="Created by"
+        isRequired={true}
+        isReadOnly={false}
+        value={CreatedBy}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              CaterpillarID,
+              BlobID,
+              CreatedBy: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.CreatedBy ?? value;
+          }
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
+          }
+          setCreatedBy(value);
+        }}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
       ></TextField>
       <Flex
         justifyContent="space-between"

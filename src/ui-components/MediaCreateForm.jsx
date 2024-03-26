@@ -25,20 +25,24 @@ export default function MediaCreateForm(props) {
   const initialValues = {
     CaterpillarID: "",
     BlobID: "",
+    CreatedBy: "",
   };
   const [CaterpillarID, setCaterpillarID] = React.useState(
     initialValues.CaterpillarID
   );
   const [BlobID, setBlobID] = React.useState(initialValues.BlobID);
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setCaterpillarID(initialValues.CaterpillarID);
     setBlobID(initialValues.BlobID);
+    setCreatedBy(initialValues.CreatedBy);
     setErrors({});
   };
   const validations = {
     CaterpillarID: [{ type: "Required" }],
     BlobID: [],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -68,6 +72,7 @@ export default function MediaCreateForm(props) {
         let modelFields = {
           CaterpillarID,
           BlobID,
+          CreatedBy,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -132,6 +137,7 @@ export default function MediaCreateForm(props) {
             const modelFields = {
               CaterpillarID: value,
               BlobID,
+              CreatedBy,
             };
             const result = onChange(modelFields);
             value = result?.CaterpillarID ?? value;
@@ -157,6 +163,7 @@ export default function MediaCreateForm(props) {
             const modelFields = {
               CaterpillarID,
               BlobID: value,
+              CreatedBy,
             };
             const result = onChange(modelFields);
             value = result?.BlobID ?? value;
@@ -170,6 +177,32 @@ export default function MediaCreateForm(props) {
         errorMessage={errors.BlobID?.errorMessage}
         hasError={errors.BlobID?.hasError}
         {...getOverrideProps(overrides, "BlobID")}
+      ></TextField>
+      <TextField
+        label="Created by"
+        isRequired={true}
+        isReadOnly={false}
+        value={CreatedBy}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              CaterpillarID,
+              BlobID,
+              CreatedBy: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.CreatedBy ?? value;
+          }
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
+          }
+          setCreatedBy(value);
+        }}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
       ></TextField>
       <Flex
         justifyContent="space-between"
