@@ -11,8 +11,29 @@ export const ViewRecords = () => {
              </div>
 
              <div className="header">
-                <div className="text">View Records</div>
+                <div className="text">Browse By...</div>
              </div>
+             <div classname="input">
+<input type="text" placeholder="Type here to search">
+        
+        </input>
+</div>
+             <div className="buttonholder">
+
+       
+        <button
+          className="buttons">
+          Moms
+        </button>
+
+        <br></br>
+
+        <button
+          className="buttons">
+          Jars
+        </button>
+
+      </div>
 
         </div>
         
