@@ -1,5 +1,6 @@
 import React from 'react'
 import { catData } from './CaterpillarTable';
+import "./CaterpillarTable.css"
 
 //Custom filter for the cage column - very stringent needs for pulling certain consts to and from
 export const CageFilter = ({ column }) => {
@@ -10,6 +11,7 @@ export const CageFilter = ({ column }) => {
     return (
         <span>
             <input
+                className='CageFilter'
                 value={filterValue || ''}
                 list="cages"
                 onChange={(e) => setFilter(e.target.value)}

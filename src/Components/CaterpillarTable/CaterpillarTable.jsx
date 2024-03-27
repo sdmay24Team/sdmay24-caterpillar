@@ -6,6 +6,7 @@ import { listCaterpillars } from "../../graphql/queries"
 import { Amplify } from "aws-amplify"
 import config from "../.././aws-exports"
 import { CageFilter } from "./CageFilter.js"
+import { ColumnFilter } from "./ColumnFilter.js"
 
 
 Amplify.configure(config);
@@ -26,7 +27,7 @@ export const CaterpillarTable = () => {
             {
                 Header: "ID",
                 accessor: "IndividualID",
-                Filter: ""
+                Filter: ColumnFilter
             },
             {
                 Header: "Cage",
@@ -34,8 +35,8 @@ export const CaterpillarTable = () => {
                 Filter: CageFilter
             },
             {
-                Header: "Date Found",
-                accessor: "DateFound",
+                Header: "Stage",
+                accessor: "Stage",
                 Filter: " "
             },
         ],
