@@ -1,51 +1,54 @@
 import React from "react"
-import { useTable } from "react-table";
+import { useTable, useFilters } from "react-table";
 import "./CaterpillarTable.css"
+import { generateClient } from 'aws-amplify/api'
+import { listCaterpillars } from "../../graphql/queries"
+import { Amplify } from "aws-amplify"
+import config from "../.././aws-exports"
+import { CageFilter } from "./CageFilter.js"
+
+
+Amplify.configure(config);
+
+const client = generateClient();
+
+export const catData = await client.graphql({ query: listCaterpillars});
 
 
 export const CaterpillarTable = () => {
     //Get Caterpillar list based on CreatedBy
-    const catData = [
-        { id: 1, Notes: "N/A", State: 1 },
-        { id: 2, Notes: "Lots of gusto with this one. Not sure how to feel about it. Lorem Ipsum yata yata yata ", State: 1 },
-        { id: 3, Notes: "N/A", State: 1 },
-        { id: 4, Notes: "N/A", State: 4 },
-        { id: 5, Notes: "N/A", State: 1 },
-        { id: 6, Notes: "N/A", State: 2 },
-        { id: 7, Notes: "N/A", State: 3 },
-        { id: 8, Notes: "N/A", State: 1 },
-        { id: 9, Notes: "N/A", State: 1 },
-        { id: 10, Notes: "DUMMY DATA ", State: 1 },
-        { id: 11, Notes: "N/A", State: 1 },
-        { id: 12, Notes: "N/A", State: 4 },
-        { id: 13, Notes: "N/A", State: 1 },
-        { id: 14, Notes: "N/A", State: 2 },
-        { id: 15, Notes: "N/A", State: 3 },
-        { id: 16, Notes: "N/A", State: 1 },
-    ]
+    
 
-    const data = React.useMemo(() => catData, []);
+    const data = React.useMemo(() => catData.data.listCaterpillars.items, []);
 
     const columns = React.useMemo(
         () => [
             {
                 Header: "ID",
-                accessor: "id",
+                accessor: "IndividualID",
+                Filter: ""
             },
             {
-                Header: "State",
-                accessor: "State",
+                Header: "Cage",
+                accessor: "Cage",
+                Filter: CageFilter
             },
             {
-                Header: "Notes",
-                accessor: "Notes",
+                Header: "Date Found",
+                accessor: "DateFound",
+                Filter: " "
             },
         ],
         []
     );
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-        useTable({ columns, data });
+        useTable({ 
+            columns,
+            data
+            },
+            useFilters
+        );
     return (
         <div className="tableContainer">
             <table {...getTableProps()}>
@@ -55,6 +58,7 @@ export const CaterpillarTable = () => {
                             {headerGroup.headers.map((column) => (
                                 <th {...column.getHeaderProps()}>
                                     {column.render("Header")}
+                                    <div>{column.canFilter ? column.render('Filter') : null}</div>
                                 </th>
                             ))}
                         </tr>
