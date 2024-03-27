@@ -1,0 +1,35 @@
+.buttonholder1 {
+    display: flex;
+    gap: 10px;
+    margin: 10px auto;
+}
+  
+.button1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 29px;
+    color: #dde8ae;
+    background: #494f2b;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.button2 {
+    color: #dde8ae;
+    background: #494f2b;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.text {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: sans-serif;
+  }

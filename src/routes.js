@@ -4,7 +4,7 @@ import ViewRecords from "./Components/ViewRecords"
 import CreateAccount from "./Components/CreateAccount"
 import Settings from "./Components/Settings"
 import ImportRecords from "./Components/ImportRecords/ImportRecords"
-import Dish from "./Components/CreateRecords/Dish"
+import Caterpillar from "./Components/CreateRecords/Caterpillar"
 
 const routes = [
   { path: "/", element: <LoginSignup />, isProtected: false },
@@ -13,7 +13,7 @@ const routes = [
   { path: "/settings", element: <Settings />, isProtected: true },
   { path: "/view", element: <ViewRecords />, isProtected: true },
   { path: "/import", element: <ImportRecords />, isProtected: true },
-  { path: "/dish", element: <Dish />, isProtected: true },
+  { path: "/cat", element: <Caterpillar />, isProtected: true },
 ]
 
 export default routes

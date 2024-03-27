@@ -6,7 +6,14 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Autocomplete,
+  Button,
+  Flex,
+  Grid,
+  SelectField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createCaterpillar } from "../graphql/mutations";
@@ -23,86 +30,54 @@ export default function CaterpillarCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    IndividualID: "",
-    CreatedBy: "",
     DateFound: "",
-    SiteFound: "",
+    SiteFound: undefined,
     LocationFound: "",
     TimeFound: "",
+    IndividualID: "",
+    CreatedBy: "",
     HostPlant: "",
     CollectedBy: "",
     Stage: "",
-    Slot: "",
-    DateEclosed: "",
-    DateReleased: "",
-    RegionReleased: "",
-    LocationReleased: "",
-    Cage: "",
   };
-  const [IndividualID, setIndividualID] = React.useState(
-    initialValues.IndividualID
-  );
-  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [DateFound, setDateFound] = React.useState(initialValues.DateFound);
   const [SiteFound, setSiteFound] = React.useState(initialValues.SiteFound);
   const [LocationFound, setLocationFound] = React.useState(
     initialValues.LocationFound
   );
   const [TimeFound, setTimeFound] = React.useState(initialValues.TimeFound);
+  const [IndividualID, setIndividualID] = React.useState(
+    initialValues.IndividualID
+  );
+  const [CreatedBy, setCreatedBy] = React.useState(initialValues.CreatedBy);
   const [HostPlant, setHostPlant] = React.useState(initialValues.HostPlant);
   const [CollectedBy, setCollectedBy] = React.useState(
     initialValues.CollectedBy
   );
   const [Stage, setStage] = React.useState(initialValues.Stage);
-  const [Slot, setSlot] = React.useState(initialValues.Slot);
-  const [DateEclosed, setDateEclosed] = React.useState(
-    initialValues.DateEclosed
-  );
-  const [DateReleased, setDateReleased] = React.useState(
-    initialValues.DateReleased
-  );
-  const [RegionReleased, setRegionReleased] = React.useState(
-    initialValues.RegionReleased
-  );
-  const [LocationReleased, setLocationReleased] = React.useState(
-    initialValues.LocationReleased
-  );
-  const [Cage, setCage] = React.useState(initialValues.Cage);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setIndividualID(initialValues.IndividualID);
-    setCreatedBy(initialValues.CreatedBy);
     setDateFound(initialValues.DateFound);
     setSiteFound(initialValues.SiteFound);
     setLocationFound(initialValues.LocationFound);
     setTimeFound(initialValues.TimeFound);
+    setIndividualID(initialValues.IndividualID);
+    setCreatedBy(initialValues.CreatedBy);
     setHostPlant(initialValues.HostPlant);
     setCollectedBy(initialValues.CollectedBy);
     setStage(initialValues.Stage);
-    setSlot(initialValues.Slot);
-    setDateEclosed(initialValues.DateEclosed);
-    setDateReleased(initialValues.DateReleased);
-    setRegionReleased(initialValues.RegionReleased);
-    setLocationReleased(initialValues.LocationReleased);
-    setCage(initialValues.Cage);
     setErrors({});
   };
   const validations = {
-    IndividualID: [{ type: "Required" }],
-    CreatedBy: [{ type: "Required" }, { type: "Email" }],
     DateFound: [{ type: "Required" }],
     SiteFound: [{ type: "Required" }],
     LocationFound: [{ type: "Required" }],
     TimeFound: [{ type: "Required" }],
+    IndividualID: [{ type: "Required" }],
+    CreatedBy: [{ type: "Required" }, { type: "Email" }],
     HostPlant: [{ type: "Required" }],
     CollectedBy: [{ type: "Required" }],
     Stage: [{ type: "Required" }],
-    Slot: [],
-    DateEclosed: [],
-    DateReleased: [],
-    RegionReleased: [],
-    LocationReleased: [],
-    Cage: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -121,6 +96,7 @@ export default function CaterpillarCreateForm(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
+  React.useEffect(() => {}, []);
   return (
     <Grid
       as="form"
@@ -130,21 +106,15 @@ export default function CaterpillarCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          IndividualID,
-          CreatedBy,
           DateFound,
           SiteFound,
           LocationFound,
           TimeFound,
+          IndividualID,
+          CreatedBy,
           HostPlant,
           CollectedBy,
           Stage,
-          Slot,
-          DateEclosed,
-          DateReleased,
-          RegionReleased,
-          LocationReleased,
-          Cage,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -199,82 +169,6 @@ export default function CaterpillarCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Individual id"
-        isRequired={true}
-        isReadOnly={false}
-        value={IndividualID}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID: value,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.IndividualID ?? value;
-          }
-          if (errors.IndividualID?.hasError) {
-            runValidationTasks("IndividualID", value);
-          }
-          setIndividualID(value);
-        }}
-        onBlur={() => runValidationTasks("IndividualID", IndividualID)}
-        errorMessage={errors.IndividualID?.errorMessage}
-        hasError={errors.IndividualID?.hasError}
-        {...getOverrideProps(overrides, "IndividualID")}
-      ></TextField>
-      <TextField
-        label="Created by"
-        isRequired={true}
-        isReadOnly={false}
-        value={CreatedBy}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy: value,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.CreatedBy ?? value;
-          }
-          if (errors.CreatedBy?.hasError) {
-            runValidationTasks("CreatedBy", value);
-          }
-          setCreatedBy(value);
-        }}
-        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
-        errorMessage={errors.CreatedBy?.errorMessage}
-        hasError={errors.CreatedBy?.hasError}
-        {...getOverrideProps(overrides, "CreatedBy")}
-      ></TextField>
-      <TextField
         label="Date found"
         isRequired={true}
         isReadOnly={false}
@@ -284,21 +178,15 @@ export default function CaterpillarCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound: value,
               SiteFound,
               LocationFound,
               TimeFound,
+              IndividualID,
+              CreatedBy,
               HostPlant,
               CollectedBy,
               Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.DateFound ?? value;
@@ -313,30 +201,85 @@ export default function CaterpillarCreateForm(props) {
         hasError={errors.DateFound?.hasError}
         {...getOverrideProps(overrides, "DateFound")}
       ></TextField>
-      <TextField
+      <Autocomplete
         label="Site found"
         isRequired={true}
         isReadOnly={false}
-        value={SiteFound}
+        placeholder="Click to search or scroll"
+        options={[
+          {
+            id: "Jakles Lagoon",
+            label: "Jakles Lagoon",
+          },
+          {
+            id: "Third Lagoon",
+            label: "Third Lagoon",
+          },
+          {
+            id: "Old Town Lagoon",
+            label: "Old Town Lagoon",
+          },
+          {
+            id: "Eagle Cove",
+            label: "Eagle Cove",
+          },
+          {
+            id: "Redoubt",
+            label: "Redoubt",
+          },
+          {
+            id: "Dunes",
+            label: "Dunes",
+          },
+          {
+            id: "Old Road Bed",
+            label: "Old Road Bed",
+          },
+          {
+            id: "NRCA",
+            label: "NRCA",
+          },
+          {
+            id: "South Beach",
+            label: "South Beach",
+          },
+          {
+            id: "Lambert #5",
+            label: "Lambert #5",
+          },
+          {
+            id: "Shrum",
+            label: "Shrum",
+          },
+          {
+            id: "Alaska Packers Rock",
+            label: "Alaska Packers Rock",
+          },
+          {
+            id: "Other",
+            label: "Other",
+          },
+        ]}
+        onSelect={({ id, label }) => {
+          setSiteFound(id);
+          runValidationTasks("SiteFound", id);
+        }}
+        onClear={() => {
+          setSiteFound("");
+        }}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound,
               SiteFound: value,
               LocationFound,
               TimeFound,
+              IndividualID,
+              CreatedBy,
               HostPlant,
               CollectedBy,
               Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.SiteFound ?? value;
@@ -349,10 +292,12 @@ export default function CaterpillarCreateForm(props) {
         onBlur={() => runValidationTasks("SiteFound", SiteFound)}
         errorMessage={errors.SiteFound?.errorMessage}
         hasError={errors.SiteFound?.hasError}
+        labelHidden={false}
         {...getOverrideProps(overrides, "SiteFound")}
-      ></TextField>
+      ></Autocomplete>
       <TextField
         label="Location found"
+        descriptiveText="Enter the UTMs of the precise collection point"
         isRequired={true}
         isReadOnly={false}
         value={LocationFound}
@@ -360,21 +305,15 @@ export default function CaterpillarCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound,
               SiteFound,
               LocationFound: value,
               TimeFound,
+              IndividualID,
+              CreatedBy,
               HostPlant,
               CollectedBy,
               Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.LocationFound ?? value;
@@ -399,21 +338,15 @@ export default function CaterpillarCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound,
               SiteFound,
               LocationFound,
               TimeFound: value,
+              IndividualID,
+              CreatedBy,
               HostPlant,
               CollectedBy,
               Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.TimeFound ?? value;
@@ -429,29 +362,87 @@ export default function CaterpillarCreateForm(props) {
         {...getOverrideProps(overrides, "TimeFound")}
       ></TextField>
       <TextField
-        label="Host plant"
+        label="Individual id"
         isRequired={true}
         isReadOnly={false}
+        value={IndividualID}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              DateFound,
+              SiteFound,
+              LocationFound,
+              TimeFound,
+              IndividualID: value,
+              CreatedBy,
+              HostPlant,
+              CollectedBy,
+              Stage,
+            };
+            const result = onChange(modelFields);
+            value = result?.IndividualID ?? value;
+          }
+          if (errors.IndividualID?.hasError) {
+            runValidationTasks("IndividualID", value);
+          }
+          setIndividualID(value);
+        }}
+        onBlur={() => runValidationTasks("IndividualID", IndividualID)}
+        errorMessage={errors.IndividualID?.errorMessage}
+        hasError={errors.IndividualID?.hasError}
+        {...getOverrideProps(overrides, "IndividualID")}
+      ></TextField>
+      <TextField
+        label="Created by"
+        isRequired={true}
+        isReadOnly={false}
+        value={CreatedBy}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              DateFound,
+              SiteFound,
+              LocationFound,
+              TimeFound,
+              IndividualID,
+              CreatedBy: value,
+              HostPlant,
+              CollectedBy,
+              Stage,
+            };
+            const result = onChange(modelFields);
+            value = result?.CreatedBy ?? value;
+          }
+          if (errors.CreatedBy?.hasError) {
+            runValidationTasks("CreatedBy", value);
+          }
+          setCreatedBy(value);
+        }}
+        onBlur={() => runValidationTasks("CreatedBy", CreatedBy)}
+        errorMessage={errors.CreatedBy?.errorMessage}
+        hasError={errors.CreatedBy?.hasError}
+        {...getOverrideProps(overrides, "CreatedBy")}
+      ></TextField>
+      <SelectField
+        label="Host plant"
+        placeholder="Please select an option"
+        isDisabled={false}
         value={HostPlant}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound,
               SiteFound,
               LocationFound,
               TimeFound,
+              IndividualID,
+              CreatedBy,
               HostPlant: value,
               CollectedBy,
               Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.HostPlant ?? value;
@@ -465,7 +456,7 @@ export default function CaterpillarCreateForm(props) {
         errorMessage={errors.HostPlant?.errorMessage}
         hasError={errors.HostPlant?.hasError}
         {...getOverrideProps(overrides, "HostPlant")}
-      ></TextField>
+      ></SelectField>
       <TextField
         label="Collected by"
         isRequired={true}
@@ -475,21 +466,15 @@ export default function CaterpillarCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound,
               SiteFound,
               LocationFound,
               TimeFound,
+              IndividualID,
+              CreatedBy,
               HostPlant,
               CollectedBy: value,
               Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.CollectedBy ?? value;
@@ -513,21 +498,15 @@ export default function CaterpillarCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              IndividualID,
-              CreatedBy,
               DateFound,
               SiteFound,
               LocationFound,
               TimeFound,
+              IndividualID,
+              CreatedBy,
               HostPlant,
               CollectedBy,
               Stage: value,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
             };
             const result = onChange(modelFields);
             value = result?.Stage ?? value;
@@ -541,236 +520,6 @@ export default function CaterpillarCreateForm(props) {
         errorMessage={errors.Stage?.errorMessage}
         hasError={errors.Stage?.hasError}
         {...getOverrideProps(overrides, "Stage")}
-      ></TextField>
-      <TextField
-        label="Slot"
-        isRequired={false}
-        isReadOnly={false}
-        value={Slot}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot: value,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.Slot ?? value;
-          }
-          if (errors.Slot?.hasError) {
-            runValidationTasks("Slot", value);
-          }
-          setSlot(value);
-        }}
-        onBlur={() => runValidationTasks("Slot", Slot)}
-        errorMessage={errors.Slot?.errorMessage}
-        hasError={errors.Slot?.hasError}
-        {...getOverrideProps(overrides, "Slot")}
-      ></TextField>
-      <TextField
-        label="Date eclosed"
-        isRequired={false}
-        isReadOnly={false}
-        type="date"
-        value={DateEclosed}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed: value,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.DateEclosed ?? value;
-          }
-          if (errors.DateEclosed?.hasError) {
-            runValidationTasks("DateEclosed", value);
-          }
-          setDateEclosed(value);
-        }}
-        onBlur={() => runValidationTasks("DateEclosed", DateEclosed)}
-        errorMessage={errors.DateEclosed?.errorMessage}
-        hasError={errors.DateEclosed?.hasError}
-        {...getOverrideProps(overrides, "DateEclosed")}
-      ></TextField>
-      <TextField
-        label="Date released"
-        isRequired={false}
-        isReadOnly={false}
-        type="date"
-        value={DateReleased}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed,
-              DateReleased: value,
-              RegionReleased,
-              LocationReleased,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.DateReleased ?? value;
-          }
-          if (errors.DateReleased?.hasError) {
-            runValidationTasks("DateReleased", value);
-          }
-          setDateReleased(value);
-        }}
-        onBlur={() => runValidationTasks("DateReleased", DateReleased)}
-        errorMessage={errors.DateReleased?.errorMessage}
-        hasError={errors.DateReleased?.hasError}
-        {...getOverrideProps(overrides, "DateReleased")}
-      ></TextField>
-      <TextField
-        label="Region released"
-        isRequired={false}
-        isReadOnly={false}
-        value={RegionReleased}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased: value,
-              LocationReleased,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.RegionReleased ?? value;
-          }
-          if (errors.RegionReleased?.hasError) {
-            runValidationTasks("RegionReleased", value);
-          }
-          setRegionReleased(value);
-        }}
-        onBlur={() => runValidationTasks("RegionReleased", RegionReleased)}
-        errorMessage={errors.RegionReleased?.errorMessage}
-        hasError={errors.RegionReleased?.hasError}
-        {...getOverrideProps(overrides, "RegionReleased")}
-      ></TextField>
-      <TextField
-        label="Location released"
-        isRequired={false}
-        isReadOnly={false}
-        value={LocationReleased}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased: value,
-              Cage,
-            };
-            const result = onChange(modelFields);
-            value = result?.LocationReleased ?? value;
-          }
-          if (errors.LocationReleased?.hasError) {
-            runValidationTasks("LocationReleased", value);
-          }
-          setLocationReleased(value);
-        }}
-        onBlur={() => runValidationTasks("LocationReleased", LocationReleased)}
-        errorMessage={errors.LocationReleased?.errorMessage}
-        hasError={errors.LocationReleased?.hasError}
-        {...getOverrideProps(overrides, "LocationReleased")}
-      ></TextField>
-      <TextField
-        label="Cage"
-        isRequired={false}
-        isReadOnly={false}
-        value={Cage}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              IndividualID,
-              CreatedBy,
-              DateFound,
-              SiteFound,
-              LocationFound,
-              TimeFound,
-              HostPlant,
-              CollectedBy,
-              Stage,
-              Slot,
-              DateEclosed,
-              DateReleased,
-              RegionReleased,
-              LocationReleased,
-              Cage: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.Cage ?? value;
-          }
-          if (errors.Cage?.hasError) {
-            runValidationTasks("Cage", value);
-          }
-          setCage(value);
-        }}
-        onBlur={() => runValidationTasks("Cage", Cage)}
-        errorMessage={errors.Cage?.errorMessage}
-        hasError={errors.Cage?.hasError}
-        {...getOverrideProps(overrides, "Cage")}
       ></TextField>
       <Flex
         justifyContent="space-between"

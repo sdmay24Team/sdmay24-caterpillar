@@ -23,7 +23,7 @@ export const NavBar = () => {
           <Link to="/">Logout</Link>
         </li>
         <li>
-          <Link to ="/dish">Dish</Link>
+          <Link to ="/cat">Create Records</Link>
         </li>
       </ul>
     </nav>
