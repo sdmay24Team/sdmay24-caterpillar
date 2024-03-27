@@ -1,0 +1,13 @@
+.CageFilter {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .ColumnFilter {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
 import "./Dashboard.css";
 
+
 export const Dashboard = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [weather, setWeather] = useState(null);
